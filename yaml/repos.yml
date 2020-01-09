@@ -1,0 +1,4 @@
+
+docker:
+  arch: amd64
+  url: https://download.docker.com/linux/debian

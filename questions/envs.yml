@@ -1,7 +1,0 @@
-questions:
-  type: rawlist
-  name: install
-  message: Choose the installation
-  choices:
-    - Quick
-    - Manual

@@ -1,0 +1,37 @@
+packages_default:
+  - git
+  - vim
+  - make
+  - neofetch
+  - sudo
+  - zsh
+  - wget
+  - unzip
+  - grep
+  - curl
+
+
+packages_admin:
+  - htop
+  - glances
+  - tmux
+
+
+packages_utils:
+  - virtualenv
+  - vlc
+  - tilix
+
+
+packages_pre_docker:
+  - apt-transport-https
+  - ca-certificates
+  - curl
+  - gnupg2
+  - software-properties-common
+
+packages_post_docker:
+  - docker-ce
+  - docker-ce-cli
+  - containerd.io
+  

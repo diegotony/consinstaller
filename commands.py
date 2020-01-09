@@ -1,5 +1,6 @@
 import sys
 import os
+import click
 
 
 def root():
@@ -15,13 +16,18 @@ def init_install():
 
 
 def install_apt(package):
-    os.system("sudo apt install {0} > /dev/null".format(package))
-    print("ok")
+    os.system("sudo apt install {0} -y > /dev/null 2>&1".format(package))
+    # print("Installing {0} ..".format(package))
+    click.echo(click.style('Installing {0} ...'.format(
+        package),
+        # bg='black',
+        fg='green',
+        bold=True),
+        err=True)
 
 
 def update_packages():
     os.system("sudo apt update ")
-    print("ok")
 
 
 def exit():
@@ -30,4 +36,4 @@ def exit():
 
 def upgrade_packages():
     os.system("sudo apt upgrade")
-    print("ok")
+
