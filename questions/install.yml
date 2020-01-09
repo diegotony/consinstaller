@@ -1,21 +1,43 @@
-questions_install:
-  type: rawlist
-  name: install
-  message: Choose the installation
-  choices:
-    - Quick
-    - Manual
+questions:
+  install:
+    type: rawlist
+    name: install
+    message: Choose the installation
+    choices:
+      - Quick
+      - Manual
+  sudo:
+    type: confirm
+    name: install
+    message: Choose the installation
+    choices:
+      - Quick
+      - Manual
 
-questions_envs:
-  type: checkbox
-  name: envs
-  message: Choose the envs
-  choices:
-    name: SysAdmin
-    name: Node
-    name: Docker
-    name: minikube
-    # validate: 
-    #     lambda answer: You must choose at least one topping.
 
-    
+
+packages_default:
+  - git
+  - vim
+  - make
+  - neofetch
+  - sudo
+  - zsh
+  - wget
+  - unzip
+  - grep
+  - curl
+
+
+packages_admin:
+  - htop
+  - glances
+  - tmux
+
+packages_apt:
+  - virtualenv
+  - tilix
+
+packages_utils:
+    - vlc
+
