@@ -48,3 +48,8 @@ packages_pre_kvm:
   - qemu-kvm
   - qemu-system
   - qemu-utils
+  - bridge-utils 
+  - virtinst
+  - libvirt-clients
+  - libvirt-daemon
+  - libvirt-daemon-system

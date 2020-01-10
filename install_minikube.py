@@ -46,23 +46,14 @@ def kubectl_sources():
 
 def install_kvm():
     update_packages()
-    install_packages_apt(package['packages_pre_kvm'],"Kvm")
+    install_packages_apt(package['packages_pre_kvm'], "Kvm")
 
 
-def minikube_curl():
-    os.system('curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 \
-  && chmod +x minikube')
-
-
-def minikube_mkdir():
-    os.system('sudo mkdir -p /usr/local/bin/')
-
-
-def minikube_bin():
-    os.system('sudo install minikube /usr/local/bin/')
+def minikube_direct():
+    os.system(' curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 \
+   && sudo install minikube-linux-amd64 /usr/local/bin/minikube')
 
 
 def install_minikube():
-    minikube_curl()
-    minikube_mkdir()
-    minikube_bin()
+    minikube_direct()
+
