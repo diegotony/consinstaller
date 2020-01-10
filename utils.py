@@ -1,19 +1,33 @@
-from pyfiglet import Figlet,figlet_format
-from commands import init_install, install_apt
+from pyfiglet import Figlet, figlet_format
 import os
 import click
 
+
 def init_cli():
-    f = Figlet(font='big')
-    return f.renderText('Hello! Constantine1396')
+    message_click("@xxxx[{::::::::::::::::::::::::::::::::::> ", "red")
+    message_click("\,,/.<(*_*)> live long and prosper", "green")
+    message_click("@xxxx[{::::::::::::::::::::::::::::::::::> ", "blue")
+
+
 
 def packages_gui(name):
-    result = figlet_format("Packages {0}".format(name), font = "digital" ) 
+    result = figlet_format("Packages {0}".format(name), font="digital")
     return result
 
 
-def install_packages(packages_list, name):
-    size = int(len(packages_list))*100
-    print(packages_gui(name))
-    for package in packages_list:
-        install_apt(package)
+def message_gui(name):
+    result = figlet_format("{0}".format(name), font="digital")
+    return result
+
+
+def message_click_colors(message, bg, fg):
+    click.echo(click.style(' {0} '.format(message),
+                           fg='{0}'.format(fg),
+                           bg='{0}'.format(bg),
+                           bold=True), err=True)
+
+
+def message_click(message, fg):
+    click.echo(click.style(' {0} '.format(message),
+                           fg='{0}'.format(fg),
+                           bold=True), err=True)

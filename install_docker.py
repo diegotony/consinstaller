@@ -2,8 +2,7 @@ import sys
 import os
 import click
 import yaml
-from commands import update_packages
-from utils import install_packages
+from commands import update_packages, install_packages
 
 with open('yaml/packages.yml') as f:
     packages_docker = yaml.load(f, Loader=yaml.FullLoader)

@@ -1,6 +1,7 @@
 import sys
 import os
 import click
+from utils import packages_gui, message_gui, message_click_colors, message_click
 
 
 def root():
@@ -16,18 +17,23 @@ def init_install():
 
 
 def install_apt(package):
-    os.system("sudo apt install {0} -y > /dev/null 2>&1".format(package))
+    cmd = os.system("sudo apt install {0} -y > /dev/null 2>&1".format(package))
+    message_click(('Installing {0} ...'.format(package)), "yellow")
+    if cmd == 0:
+        message_click(
+            (' {0} installed    \,,/(^_^)\,,/ '.format(package)), "green")
+
+    else:
+        message_click((' {0} not installed    <*_*>  '.format(package)), "red")
+
+        pass
     # print("Installing {0} ..".format(package))
-    click.echo(click.style('Installing {0} ...'.format(
-        package),
-        # bg='black',
-        fg='green',
-        bold=True),
-        err=True)
 
 
 def update_packages():
-    os.system("sudo apt update ")
+    print(message_click(
+        '', "green"))
+    os.system("sudo apt-get update > /dev/null ")
 
 
 def exit():
@@ -35,5 +41,12 @@ def exit():
 
 
 def upgrade_packages():
-    os.system("sudo apt upgrade")
+    os.system("sudo apt-get upgrade -y > /dev/null 2>&1")
 
+
+def install_packages(packages_list, name):
+    size = int(len(packages_list))*100
+    print(message_click(
+        "<======= Installing {0} Packages =======>".format(name), "magenta"))
+    for package in packages_list:
+        install_apt(package)

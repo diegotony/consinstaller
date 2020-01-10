@@ -10,18 +10,15 @@ packages_default:
   - grep
   - curl
 
-
 packages_admin:
   - htop
   - glances
   - tmux
 
-
 packages_utils:
   - virtualenv
   - vlc
   - tilix
-
 
 packages_pre_docker:
   - apt-transport-https
@@ -34,4 +31,3 @@ packages_post_docker:
   - docker-ce
   - docker-ce-cli
   - containerd.io
-  
