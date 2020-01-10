@@ -33,3 +33,9 @@ packages_post_docker:
   - containerd.io
 
 packages_pre_node: nodejs
+
+packages_npm:
+  - nodemon
+  - express
+  - "@angular/cli"
+  - "@nestjs/cli"

@@ -26,9 +26,6 @@ def install_apt(package):
     else:
         message_click((' {0} not installed    <*_*>  '.format(package)), "red")
 
-        pass
-    # print("Installing {0} ..".format(package))
-
 
 def update_packages():
     print(message_click(
@@ -44,10 +41,10 @@ def upgrade_packages():
     os.system("sudo apt-get upgrade -y > /dev/null 2>&1")
 
 
-def install_packages(packages_list, name):
-    size = int(len(packages_list))*100
+def install_packages_apt(packages_list, name):
     print(message_click(
         '\n     (¯`·._.·(¯`·._.·   Installing {0} Packages   ·._.·´¯)·._.·´¯)\n'.format(name), "magenta"))
-
     for package in packages_list:
         install_apt(package)
+
+

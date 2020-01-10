@@ -2,7 +2,7 @@ import sys
 import os
 import click
 import yaml
-from commands import update_packages, install_packages
+from commands import update_packages, install_packages_apt
 from utils import message_click_colors, message_click
 
 
@@ -20,7 +20,7 @@ def install_docker():
     message_click(
         "(¯`·._.··¸.-~*´¨¯¨`*·~-.,-(_Docker Instalation_)-,.-~*´¨¯¨`*·~-.¸··._.·´¯)\n", "cyan")
     update_packages()
-    install_packages(
+    install_packages_apt(
         packages_docker['packages_pre_docker'], "Docker Pre-Instalation")
     message_click("Added Docker’s official GPG key", "cyan")
     docker_curl(url_docker['docker']['url'])
@@ -29,7 +29,7 @@ def install_docker():
     message_click("Adding Repository ...", "cyan")
     docker_repo(repos_docker['docker']['arch'], repos_docker['docker']['url'])
     update_packages()
-    install_packages(
+    install_packages_apt(
         packages_docker['packages_post_docker'], "Docker Post-Instalation")
     message_click("Testing Docker", "cyan")
     check_docker()

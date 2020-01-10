@@ -4,7 +4,7 @@ import click
 import yaml
 import emoji
 
-from commands import update_packages, install_packages
+from commands import update_packages, install_packages_apt
 from utils import message_click_colors, init_cli
 
 with open('yaml/packages.yml') as f:
@@ -13,23 +13,23 @@ with open('yaml/packages.yml') as f:
 
 def install_all():
     update_packages()
-    install_packages(
+    install_packages_apt(
         packages['packages_default'], "Default")
-    install_packages(
+    install_packages_apt(
         packages['packages_admin'], "SysAdmin")
-    install_packages(
+    install_packages_apt(
         packages['packages_utils'], "Utils")
 
 
 def install_sys():
     update_packages()
-    install_packages(
+    install_packages_apt(
         packages['packages_default'], "Default")
-    install_packages(
+    install_packages_apt(
         packages['packages_admin'], "SysAdmin")
 
 
 def install_basic():
     update_packages()
-    install_packages(
+    install_packages_apt(
         packages['packages_default'], "Default")
