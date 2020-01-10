@@ -39,3 +39,12 @@ packages_npm:
   - express
   - "@angular/cli"
   - "@nestjs/cli"
+
+packages_pre_kubectl: apt-transport-https
+packages_post_kubectl: kubectl
+
+packages_pre_kvm:
+  - qemu
+  - qemu-kvm
+  - qemu-system
+  - qemu-utils

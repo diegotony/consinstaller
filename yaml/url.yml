@@ -1,4 +1,6 @@
 docker:
   url: https://download.docker.com/linux/debian/gpg
 nodejs:
-  url: https://deb.nodesource.com/setup_
+  url: https://deb.nodesource.com/setup
+kubectl:
+  url: https://packages.cloud.google.com/apt/doc/apt-key.gpg

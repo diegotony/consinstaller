@@ -3,6 +3,7 @@ from install_docker import install_docker
 from install_fast import install_all, install_sys, install_basic
 from utils import packages_gui, message_gui, message_click_colors, message_click
 from install_node import install_node, install_node_all
+from install_minikube import install_k8s_minikube
 
 
 @click.group()
@@ -32,7 +33,7 @@ def docker():
 
 @cli.command(help='Install minikube ')
 def minikube():
-    print("nminikube")
+    install_k8s_minikube()
 
 
 @cli.command(help='Install NodeJs')
@@ -60,7 +61,7 @@ def install_all():
     print(message_click_colors(
         '           ,.-~*´¨¯¨`*·~-.¸-(_Phase_Two_)-,.-~*´¨¯¨`*·~-.¸         ', 'white', "black"))
     install_docker()
-    install_node_all
+    install_node_all()
 
 
 if __name__ == "__main__":
