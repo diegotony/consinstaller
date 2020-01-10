@@ -25,3 +25,4 @@ def install_fast():
         packages_docker['packages_admin'], "SysAdmin")
     install_packages(
         packages_docker['packages_utils'], "Utils")
+    

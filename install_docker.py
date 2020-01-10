@@ -3,6 +3,8 @@ import os
 import click
 import yaml
 from commands import update_packages, install_packages
+from utils import message_click_colors, message_click
+
 
 with open('yaml/packages.yml') as f:
     packages_docker = yaml.load(f, Loader=yaml.FullLoader)
@@ -15,16 +17,23 @@ with open('yaml/url.yml') as f:
 
 
 def install_docker():
+    message_click(
+        "(¯`·._.··¸.-~*´¨¯¨`*·~-.,-(_Docker Instalation_)-,.-~*´¨¯¨`*·~-.¸··._.·´¯)", "cyan")
     update_packages()
     install_packages(
         packages_docker['packages_pre_docker'], "Docker Pre-Instalation")
+    message_click("Added Docker’s official GPG key", "cyan")
     docker_curl(url_docker['docker']['url'])
+    message_click("Verify fingerprint", "cyan")
     docker_apt_key()
+    message_click("Added Repository", "cyan")
     docker_repo(repos_docker['docker']['arch'], repos_docker['docker']['url'])
     update_packages()
     install_packages(
         packages_docker['packages_post_docker'], "Docker Post-Instalation")
+    message_click("Testing Docker", "cyan")
     check_docker()
+    message_click("Create docker group", "cyan")
     create_group_docker()
     add_group_docker()
 
