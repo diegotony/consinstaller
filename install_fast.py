@@ -18,9 +18,6 @@ with open('yaml/url.yml') as f:
 
 
 def install_fast():
-    init_cli()
-    # message_click_colors(emoji.emojize(
-    #     'Fast Install (Run Barry Run)'), "red", "yellow")
     update_packages()
     install_packages(
         packages_docker['packages_default'], "Default")
