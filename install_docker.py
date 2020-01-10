@@ -18,7 +18,7 @@ with open('yaml/url.yml') as f:
 
 def install_docker():
     message_click(
-        "(¯`·._.··¸.-~*´¨¯¨`*·~-.,-(_Docker Instalation_)-,.-~*´¨¯¨`*·~-.¸··._.·´¯)", "cyan")
+        "(¯`·._.··¸.-~*´¨¯¨`*·~-.,-(_Docker Instalation_)-,.-~*´¨¯¨`*·~-.¸··._.·´¯)\n", "cyan")
     update_packages()
     install_packages(
         packages_docker['packages_pre_docker'], "Docker Pre-Instalation")
@@ -26,7 +26,7 @@ def install_docker():
     docker_curl(url_docker['docker']['url'])
     message_click("Verify fingerprint", "cyan")
     docker_apt_key()
-    message_click("Added Repository", "cyan")
+    message_click("Adding Repository ...", "cyan")
     docker_repo(repos_docker['docker']['arch'], repos_docker['docker']['url'])
     update_packages()
     install_packages(
@@ -49,7 +49,7 @@ def docker_apt_key():
 def docker_repo(arch, url):
     os.system("sudo add-apt-repository \
    'deb [arch={0}] {1} \
-   $(lsb_release -cs) \
+   buster \
    stable'".format(arch, url))
 
 

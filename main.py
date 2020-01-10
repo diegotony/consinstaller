@@ -2,6 +2,7 @@ import click
 from install_docker import install_docker
 from install_fast import install_all, install_sys, install_basic
 from utils import packages_gui, message_gui, message_click_colors, message_click
+from install_node import install_node
 
 
 @click.group()
@@ -35,9 +36,9 @@ def minikube():
 
 
 @cli.command(help='Install Nodejs')
-def nodejs():
-    print("node")
-
+@click.option('--version', default=10, help='Install nodejs 10')
+def nodejs(version):
+    install_node(version)
 
 @cli.command(help='Download important repositories')
 def github():

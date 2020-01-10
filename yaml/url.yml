@@ -1,3 +1,4 @@
 docker:
-    url: https://download.docker.com/linux/debian/gpg
-  
+  url: https://download.docker.com/linux/debian/gpg
+nodejs:
+  url: https://deb.nodesource.com/setup_

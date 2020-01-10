@@ -11,7 +11,6 @@ with open('yaml/packages.yml') as f:
     packages = yaml.load(f, Loader=yaml.FullLoader)
 
 
-
 def install_all():
     update_packages()
     install_packages(

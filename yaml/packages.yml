@@ -31,3 +31,5 @@ packages_post_docker:
   - docker-ce
   - docker-ce-cli
   - containerd.io
+
+packages_pre_node: nodejs

@@ -32,7 +32,7 @@ def install_apt(package):
 
 def update_packages():
     print(message_click(
-        '(¯`·._.·(¯`·._.· Updating Packages  ·._.·´¯)·._.·´¯)', "green"))
+        '           (¯`·._.·(¯`·._.· Updating Packages  ·._.·´¯)·._.·´¯)\n', "green"))
     os.system("sudo apt-get update > /dev/null ")
 
 
@@ -47,7 +47,7 @@ def upgrade_packages():
 def install_packages(packages_list, name):
     size = int(len(packages_list))*100
     print(message_click(
-        '(¯`·._.·(¯`·._.·   Installing {0} Packages   ·._.·´¯)·._.·´¯)'.format(name), "magenta"))
+        '\n     (¯`·._.·(¯`·._.·   Installing {0} Packages   ·._.·´¯)·._.·´¯)\n'.format(name), "magenta"))
 
     for package in packages_list:
         install_apt(package)
