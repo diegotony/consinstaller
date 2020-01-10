@@ -53,7 +53,7 @@ def github():
     print("github")
 
 
-@cli.command(help='Install apt, docker, nodejs ')
+@cli.command(help='Install apt, Docker, NodeJs and minikube')
 def install_all():
     print(message_click_colors(
         '           ,.-~*´¨¯¨`*·~-.¸-(_Phase_One_)-,.-~*´¨¯¨`*·~-.¸         ', 'white', "black"))
@@ -62,6 +62,9 @@ def install_all():
         '           ,.-~*´¨¯¨`*·~-.¸-(_Phase_Two_)-,.-~*´¨¯¨`*·~-.¸         ', 'white', "black"))
     install_docker()
     install_node_all()
+    print(message_click_colors(
+        '           ,.-~*´¨¯¨`*·~-.¸-(_Phase_Three_)-,.-~*´¨¯¨`*·~-.¸         ', 'white', "black"))
+    install_k8s_minikube()
 
 
 if __name__ == "__main__":
