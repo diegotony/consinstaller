@@ -8,21 +8,29 @@ from commands import update_packages, install_packages
 from utils import message_click_colors, init_cli
 
 with open('yaml/packages.yml') as f:
-    packages_docker = yaml.load(f, Loader=yaml.FullLoader)
-
-with open('yaml/repos.yml') as f:
-    repos_docker = yaml.load(f, Loader=yaml.FullLoader)
-
-with open('yaml/url.yml') as f:
-    url_docker = yaml.load(f, Loader=yaml.FullLoader)
+    packages = yaml.load(f, Loader=yaml.FullLoader)
 
 
-def install_fast():
+
+def install_all():
     update_packages()
     install_packages(
-        packages_docker['packages_default'], "Default")
+        packages['packages_default'], "Default")
     install_packages(
-        packages_docker['packages_admin'], "SysAdmin")
+        packages['packages_admin'], "SysAdmin")
     install_packages(
-        packages_docker['packages_utils'], "Utils")
-    
+        packages['packages_utils'], "Utils")
+
+
+def install_sys():
+    update_packages()
+    install_packages(
+        packages['packages_default'], "Default")
+    install_packages(
+        packages['packages_admin'], "SysAdmin")
+
+
+def install_basic():
+    update_packages()
+    install_packages(
+        packages['packages_default'], "Default")
