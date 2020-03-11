@@ -1,4 +1,4 @@
-# mycli-installer
+# consinstaller
 CLI for Debian 10 Buster.
 For check the package to install type
 ```
