@@ -1,17 +1,22 @@
 import click
-from app.commands.apt_commands import prepare_install, install_packages_apt
-
+from app.commands.apt_commands import execute as apt_install_packages_default
+from app.commands.install_docker import execute as docker_install
 
 @click.group()
 def cli():
     pass
 
 
-@cli.command(help='hello debian')
-def install_all():
-    print(prepare_install())
+@cli.command(help='install packages default')
+def default():
+    # apt_install_packages_default()
+    docker_install()
 
 
-@cli.command(help='install package')
-def install_default():
-    install_packages_apt()
+# def with_docker(help="install packages default and docker"):
+#     prepare_install()
+#
+#     pass
+# # @cli.command(help='install package')
+# def install_default():
+#     install_packages_apt()

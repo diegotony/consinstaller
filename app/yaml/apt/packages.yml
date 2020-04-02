@@ -1,4 +1,4 @@
-packages_default:
+default:
   - git
   - vim
   - make
@@ -16,6 +16,7 @@ packages_default:
   - virtualenv
   - vlc
   - tilix
+  - firmware-linux-nonfree
 
 packages_pre_docker:
   - apt-transport-https
