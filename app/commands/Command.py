@@ -1,83 +1,69 @@
 import os
-from app.format.message_cli import message
+from app.format.message_cli import *
 
 
 class Command:
 
-    def __init__(self, package_source, command, package, args):
-        self.package_source = package_source
-        self.command = command
-        self.package = package
+    def __init__(self, arg1, arg2, arg3, args):
+        self.arg1 = arg1
+        self.arg2 = arg2
+        self.arg3 = arg3
         self.args = args
 
     def install_package(self):
         cmd = os.system("{0} {1} {2} {3}".format(
-            self.package_source,
-            self.command,
-            self.package,
+            self.arg1,
+            self.arg2,
+            self.arg3,
             self.args))
 
-        message(('Installing {0} ...'.format(self.package)), "yellow")
+        message_state(self.arg3)
 
         if cmd == 0:
-            message(('==>  {0} installed    \,,/(^_^)\,,/ '.format(self.package)), "green")
-
+            message_install_correct(self.arg3)
         else:
-            message(('==>  {0} not installed    <*_*>  '.format(self.package)), "red")
+            message_install_error(self.arg3)
 
     def install_package_root(self):
         cmd = os.system('sudo {0} {1} {2} {3}'.format(
-            self.package_source,
-            self.command,
-            self.package,
+            self.arg1,
+            self.arg2,
+            self.arg3,
             self.args))
 
-        message(('Installing {0} ...'.format(self.package))
-                , "yellow")
-        if cmd == 0:
-            message(('==>  {0} installed    \,,/(^_^)\,,/ '.format(self.package)), "green")
+        message_state(self.arg3)
 
+        if cmd == 0:
+            message_install_correct(self.arg3)
         else:
-            message(('==>  {0} not installed    <*_*>  '.format(self.package)), "red")
+            message_install_error(self.arg3)
 
     def execute_command(self):
         cmd = os.system("{0} {1} {2} {3}".format(
-            self.package_source,
-            self.command,
-            self.package,
+            self.arg1,
+            self.arg2,
+            self.arg3,
             self.args))
 
-        message(('Execute {0} {1} {2} {3} ...'.format(self.package_source,
-                                                      self.command,
-                                                      self.package,
-                                                      self.args)), "yellow")
-
+        message_state(self.arg3)
         if cmd == 0:
-            message(('==>  {0} {1} Correct    \,,/(^_^)\,,/ '.format(self.package_source, self.command)), "green")
-
+            message_execute_correct(self.arg3)
         else:
-            message(('==>  {0} {1}  Upps    <*_*>  '.format(self.package_source,self.command)), "red")
+            message_execute_error(self.arg3)
 
     def execute_command_root(self):
         cmd = os.system("sudo {0} {1} {2} {3}".format(
-            self.package_source,
-            self.command,
-            self.package,
+            self.arg1,
+            self.arg2,
+            self.arg3,
             self.args))
 
-        message(('Execute {0} {1} {2} {3} ...'.format(self.package,
-                                                      self.command,
-                                                      self.package,
-                                                      self.args)), "yellow")
-
+        message_state(self.arg3)
         if cmd == 0:
-            message(('==>  {0}  Correct    \,,/(^_^)\,,/ '.format(self.package)), "green")
-
+            message_execute_correct(self.arg3)
         else:
-            message(('==>  {0} Upps   <*_*>  '.format(self.package)), "red")
+            message_execute_error(self.arg3)
 
-    def print_command(self):
-        print(self.package_source,
-              self.command,
-              self.package,
-              self.args)
+    def str_command(self):
+        command = "{0} {1} {2} {3}".format(self.arg1, self.arg2, self.arg3, self.args)
+        return command
