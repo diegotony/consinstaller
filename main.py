@@ -1,14 +1,14 @@
-import click
 # from install_docker import install_docker
 # from install_fast import install_all
 # from utils import packages_gui, message_gui, message_click_colors, message_click
 # from install_node import install_node, install_node_all
 # from install_minikube import install_k8s_minikube
-import platform
 
-@click.group()
-def cli():
-    pass
+from app.config import os_installation
+
+#@click.group()
+#def cli():
+#    pass
 
 
 # @cli.command(help='Install all apt packages')
@@ -43,7 +43,7 @@ def cli():
 
 
 # @cli.command(help='Install NodeJs with packages')
-# @click.option('--version', default=10, help='Install nodejs 10')
+# @click.option('--version', deapt = Command("apt", "install", "this")fault=10, help='Install nodejs 10')
 # def nodejs_all(version):
 #     install_node_all(version)
 
@@ -55,4 +55,6 @@ def cli():
 
 
 if __name__ == "__main__":
-    cli()
+    print(os_installation())
+
+ #   cli()
