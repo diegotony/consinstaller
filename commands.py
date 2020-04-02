@@ -4,16 +4,18 @@ import click
 from utils import packages_gui, message_gui, message_click_colors, message_click
 
 
-def root():
-    os.system("sudo".format(format))
-
-
 def init_install():
     def check():
         update_packages()
         upgrade_packages()
-
     return check
+
+def update(args):
+    os.system("sudo apt-get update " + args)
+
+def upgrade_packages():
+    os.system("sudo apt-get upgrade -y > /dev/null 2>&1")
+
 
 
 def install_apt(package):
@@ -30,15 +32,11 @@ def install_apt(package):
 def update_packages():
     print(message_click(
         '           (¯`·._.·(¯`·._.· Updating Packages  ·._.·´¯)·._.·´¯)\n', "green"))
-    os.system("sudo apt-get update > /dev/null ")
+    update("> /dev/null ")
 
 
 def exit():
     os.system("exit")
-
-
-def upgrade_packages():
-    os.system("sudo apt-get upgrade -y > /dev/null 2>&1")
 
 
 def install_packages_apt(packages_list, name):

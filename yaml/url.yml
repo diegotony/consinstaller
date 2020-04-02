@@ -4,3 +4,5 @@ nodejs:
   url: https://deb.nodesource.com/setup
 kubectl:
   url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+oh-my-zsh:
+  url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh

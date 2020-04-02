@@ -2,7 +2,6 @@ import sys
 import os
 import click
 import yaml
-import emoji
 
 from commands import update_packages, install_packages_apt, install_apt
 from utils import message_click_colors, message_click

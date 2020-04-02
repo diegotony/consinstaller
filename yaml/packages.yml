@@ -9,14 +9,10 @@ packages_default:
   - unzip
   - grep
   - curl
-
-packages_admin:
   - htop
   - glances
   - tmux
   - screen
-
-packages_utils:
   - virtualenv
   - vlc
   - tilix
@@ -37,9 +33,9 @@ packages_pre_node: nodejs
 
 packages_npm:
   - nodemon
-  - express
-  - "@angular/cli"
-  - "@nestjs/cli"
+  # - express
+  # - "@angular/cli"
+  # - "@nestjs/cli"
 
 packages_pre_kubectl: apt-transport-https
 packages_post_kubectl: kubectl

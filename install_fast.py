@@ -15,21 +15,5 @@ def install_all():
     update_packages()
     install_packages_apt(
         packages['packages_default'], "Default")
-    install_packages_apt(
-        packages['packages_admin'], "SysAdmin")
-    install_packages_apt(
-        packages['packages_utils'], "Utils")
 
 
-def install_sys():
-    update_packages()
-    install_packages_apt(
-        packages['packages_default'], "Default")
-    install_packages_apt(
-        packages['packages_admin'], "SysAdmin")
-
-
-def install_basic():
-    update_packages()
-    install_packages_apt(
-        packages['packages_default'], "Default")
