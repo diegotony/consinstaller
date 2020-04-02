@@ -9,7 +9,6 @@ def init_cli():
     message_click("@xxxx[{::::::::::::::::::::::::::::::::::> ", "blue")
 
 
-
 def packages_gui(name):
     result = figlet_format("Packages {0}".format(name), font="digital")
     return result

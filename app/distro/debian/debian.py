@@ -1,5 +1,7 @@
 import click
-from  app.commands.apt_commands import prepare_install, install_packages_apt
+from app.commands.apt_commands import prepare_install, install_packages_apt
+
+
 @click.group()
 def cli():
     pass
