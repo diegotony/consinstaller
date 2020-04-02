@@ -15,6 +15,38 @@ def message(string_message, fg):
                            bold=True), err=True)
 
 
+def message_state(string_message):
+    click.echo(click.style('Executing {0} ...'.format(string_message),
+                           fg='yellow',
+                           bold=True), err=True)
+
+    pass
+
+
+def message_install_correct(string_message):
+    click.echo(click.style('==>  {0} Installed\t\t \,,/(^_^)\,,/ '.format(string_message),
+                           fg='green',
+                           bold=True), err=True)
+
+
+def message_execute_correct(string_message):
+    click.echo(click.style('==>  {0} correct\t\t \,,/(^_^)\,,/ '.format(string_message),
+                           fg='green',
+                           bold=True), err=True)
+
+
+def message_install_error(string_message):
+    click.echo(click.style('==>  {0} not installed\t\t <*_*>'.format(string_message),
+                           fg='red',
+                           bold=True), err=True)
+
+
+def message_execute_error(string_message):
+    click.echo(click.style('==>  {0} Upps\t\t <*_*>'.format(string_message),
+                           fg='red',
+                           bold=True), err=True)
+
+
 def package_message(name):
     result = figlet_format("Packages {0}".format(name), font="digital")
     return result
@@ -23,6 +55,11 @@ def package_message(name):
 def message_gui(name):
     result = figlet_format("{0}".format(name), font="digital")
     return result
+
+
+def separator(name):
+    message(
+        "(¯`·._.··¸.-~*´¨¯¨`*·~-.,-(_{0}_)-,.-~*´¨¯¨`*·~-.¸··._.·´¯)\n".format(name), "cyan")
 
 
 def init_cli():
