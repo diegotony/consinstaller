@@ -1,5 +1,4 @@
 import yaml
-from app.commands.Command import Command
 from app.commands.commands_utils import *
 from app.format.message_cli import *
 
@@ -15,20 +14,26 @@ with open('app/yaml/apt/url.yml') as f:
 
 def execute():
     separator("Docker Installation")
+    step("Preparing Install...")
+    step("Update Package..")
     prepare_install()
+    step("Installing Docker dependencies")
     install_packages_apt(packages['packages_pre_docker'])
-    message("Added Docker’s official GPG key", "cyan")
+    step("Added Docker’s official GPG key")
     docker_curl(urls['docker']['url'])
-    message("Verify fingerprint", "cyan")
+    step("Verify fingerprint GPG")
     docker_apt_key()
-    message("Adding Repository ...", "cyan")
+    step("Adding Repository to sources_list...")
     add_repo(repos['docker']['arch'], repos['docker']['url'])
+    step("Update Package.. (Again)")
     prepare_install()
+    step("Installing Docker")
     install_packages_apt(packages['packages_post_docker'])
-    message("Testing Docker", "cyan")
+    step("Testing Docker Installation")
     check_docker()
-    message("Create docker group", "cyan")
+    step("Create Docker Group")
     create_group_docker()
+    step("Add User to Docker Group")
     add_group_docker()
 
 
@@ -42,15 +47,12 @@ def docker_apt_key():
     Command("apt-key", "fingerprint", "0EBFCD88", "").execute_command_root()
 
 
-
-
 def check_docker():
     Command('docker', 'run', 'hello-world', "").execute_command_root()
 
 
 def create_group_docker():
     Command("groupadd", "docker", "", "").execute_command_root()
-    # os.system("sudo groupadd docker")
 
 
 def add_group_docker():
