@@ -1,8 +1,8 @@
-from app.commands.Command import Command
+from app.commands.command_class import Command
 
 
 def prepare_install():
-    Command("apt", "update", "", "").execute_command_root()
+    Command("apt", "", "update -y", " > /dev/null 2>&1").execute_command_root()
 
 
 def install_package_apt(sudo, package):
