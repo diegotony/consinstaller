@@ -1,55 +1,47 @@
-import sys
-import os
-import click
 import yaml
+from app.commands.commands_utils import install_packages_apt, prepare_install, install_package_apt, join_commands
+from app.format.message_cli import step, separator
+from app.commands.command_class import Command
 
-from commands import update_packages, install_packages_apt, install_apt
-from utils import message_click_colors, message_click
-
-with open('yaml/packages.yml') as f:
+with open("app/yaml/apt/packages.yml") as f:
     packages = yaml.load(f, Loader=yaml.FullLoader)
 
-with open('yaml/url.yml') as f:
+with open('app/yaml/apt/url.yml') as f:
     url = yaml.load(f, Loader=yaml.FullLoader)
 
 
-def install_node(version):
-    message_click(
-        "\n(¯`·._.··¸.-~*´¨¯¨`*·~-.,-(_NodeJs Instalation_)-,.-~*´¨¯¨`*·~-.¸··._.·´¯)\n", "cyan")
-    update_packages()
-    message_click("Adding Repository ... ", "green")
+def execute_install_node(version):
+    separator("NodeJs Instalation")
+    step("Updating Packages")
+    prepare_install()
+    step("Adding Repository ... ")
     node_curl(url['nodejs']['url'], version)
-    install_apt(packages['packages_pre_node'])
+    step("Installing Node")
+    install_package_apt(True, packages['packages_pre_node'])
 
 
-def install_node_all(version):
-    message_click(
-        "\n(¯`·._.··¸.-~*´¨¯¨`*·~-.,-(_NodeJs Instalation_)-,.-~*´¨¯¨`*·~-.¸··._.·´¯)\n", "cyan")
-    update_packages()
-    message_click("Adding Repository ... ", "green")
+def execute_install_node_all(version):
+    separator("NodeJs Instalation")
+    step("Updating Packages")
+    prepare_install()
+    step("Adding Repository ... ")
     node_curl(url['nodejs']['url'], version)
-    install_apt(packages['packages_pre_node'])
+    step("Installing Node")
+    install_package_apt(True, packages['packages_pre_node'])
+    step("Installing Node Modules")
     install_packages_npm(packages['packages_npm'])
 
 
-def node_curl(url, version):
-    os.system(
-        "curl -sL {0}{1}.x | sudo -E bash -  > /dev/null".format(url, version))
+def node_curl(link, version):
+    cmd1 = Command("curl", "-sL", "{0}{1}.x".format(link, version), "")
+    cmd2 = Command("sudo ", "-E", "bash", "-")
+    join_commands(cmd1, "|", cmd2)
 
 
 def install_npm(package):
-    cmd = os.system("sudo npm i -g  {0} -y > /dev/null 2>&1".format(package))
-    message_click(('Installing {0} ...'.format(package)), "yellow")
-    if cmd == 0:
-        message_click(
-            (' {0} installed    \,,/(^_^)\,,/ '.format(package)), "green")
-
-    else:
-        message_click((' {0} not installed    <*_*>  '.format(package)), "red")
+    Command("npm", "i -g", "{0}".format(package), "-y > /dev/null 2>&1").install_package_root()
 
 
 def install_packages_npm(packages_list):
-    print(message_click(
-        '\n     (¯`·._.·(¯`·._.·   Installing Node Packages   ·._.·´¯)·._.·´¯)\n', "magenta"))
     for package in packages_list:
         install_npm(package)
