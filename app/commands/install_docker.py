@@ -1,64 +1,50 @@
-import sys
-import os
-import click
 import yaml
-from app.commands.Command import Command
-from app.commands.commands_utils import prepare_install, install_packages_apt
-from app.format.message_cli import message
+from app.commands.commands_utils import *
+from app.format.message_cli import *
 
 with open('app/yaml/apt/packages.yml') as f:
-    packages_docker = yaml.load(f, Loader=yaml.FullLoader)
+    packages = yaml.load(f, Loader=yaml.FullLoader)
 
 with open('app/yaml/apt/repos.yml') as f:
-    repos_docker = yaml.load(f, Loader=yaml.FullLoader)
+    repos = yaml.load(f, Loader=yaml.FullLoader)
 
 with open('app/yaml/apt/url.yml') as f:
-    url_docker = yaml.load(f, Loader=yaml.FullLoader)
+    urls = yaml.load(f, Loader=yaml.FullLoader)
 
 
 def execute():
-    message(
-        "(¯`·._.··¸.-~*´¨¯¨`*·~-.,-(_Docker Instalation_)-,.-~*´¨¯¨`*·~-.¸··._.·´¯)\n", "cyan")
-
+    separator("Docker Installation")
+    step("Preparing Install...")
+    step("Update Package..")
     prepare_install()
-    install_packages_apt(packages_docker['packages_pre_docker'])
-    message("Added Docker’s official GPG key", "cyan")
-    docker_curl(url_docker['docker']['url'])
-    message("Verify fingerprint", "cyan")
+    step("Installing Docker dependencies")
+    install_packages_apt(packages['packages_pre_docker'])
+    step("Added Docker’s official GPG key")
+    docker_curl(urls['docker']['url'])
+    step("Verify fingerprint GPG")
     docker_apt_key()
-    message("Adding Repository ...", "cyan")
-    docker_repo(repos_docker['docker']['arch'], repos_docker['docker']['url'])
+    step("Adding Repository to sources_list...")
+    add_repo(repos['docker']['arch'], repos['docker']['url'])
+    step("Update Package.. (Again)")
     prepare_install()
-    install_packages_apt(packages_docker['packages_post_docker'])
-    message("Testing Docker", "cyan")
+    step("Installing Docker")
+    install_packages_apt(packages['packages_post_docker'])
+    step("Testing Docker Installation")
     check_docker()
-    message("Create docker group", "cyan")
+    step("Create Docker Group")
     create_group_docker()
+    step("Add User to Docker Group")
     add_group_docker()
 
 
 def docker_curl(url):
-    Command("curl -fsSL", url, "| ","sudo apt-key add -").execute_command_root()
-    # os.system(" curl -fsSL {0} | sudo apt-key add -".format(url))
+    cmd1 = Command("curl", "-fsSL", "url", "")
+    cmd2 = Command("sudo", "key", "add", "-")
+    join_commands(cmd1, "|", cmd2)
 
 
 def docker_apt_key():
     Command("apt-key", "fingerprint", "0EBFCD88", "").execute_command_root()
-    # os.system("sudo apt-key fingerprint 0EBFCD88")
-
-
-def docker_repo(arch, url):
-    Command('add-apt-repository',
-            " 'deb [arch={0}] {1} \
-            buster \
-            stable'"
-            .format(arch, url), "", "").execute_command_root()
-
-
-#  os.system("sudo add-apt-repository \
-# 'deb [arch={0}] {1} \
-# buster \
-# stable'".format(arch, url))
 
 
 def check_docker():
@@ -67,9 +53,7 @@ def check_docker():
 
 def create_group_docker():
     Command("groupadd", "docker", "", "").execute_command_root()
-    # os.system("sudo groupadd docker")
 
 
 def add_group_docker():
     Command('usermod', '-aG ', 'docker $USER', "").execute_command_root()
-    # os.system("sudo usermod -aG docker $USER")

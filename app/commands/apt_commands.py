@@ -7,7 +7,6 @@ with open('app/yaml/apt/packages.yml') as f:
 
 def execute():
     prepare_install()
-    print(packages_apt['default'])
     install_packages_apt(packages_apt['default'])
 
 
