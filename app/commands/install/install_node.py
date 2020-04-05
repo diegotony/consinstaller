@@ -3,10 +3,10 @@ from app.commands.commands_utils import install_packages_apt, prepare_install, i
 from app.format.message_cli import step, separator
 from app.commands.command_class import Command
 
-with open("app/yaml/apt/packages.yml") as f:
+with open("app/yaml/pkg/packages.yml") as f:
     packages = yaml.load(f, Loader=yaml.FullLoader)
 
-with open('app/yaml/apt/url.yml') as f:
+with open('app/yaml/pkg/url.yml') as f:
     url = yaml.load(f, Loader=yaml.FullLoader)
 
 

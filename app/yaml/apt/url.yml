@@ -1,8 +1,0 @@
-docker:
-  url: https://download.docker.com/linux/debian/gpg
-nodejs:
-  url: https://deb.nodesource.com/setup_
-kubectl:
-  url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
-oh-my-zsh:
-  url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh

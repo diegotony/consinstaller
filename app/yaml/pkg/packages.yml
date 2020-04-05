@@ -17,9 +17,10 @@ default:
   - vlc
   - tilix
   - firmware-linux-nonfree
+  - snapd
 
 packages_pre_docker:
-  - apt-transport-https
+  - pkg-transport-https
   - ca-certificates
   - curl
   - gnupg2
@@ -38,7 +39,7 @@ packages_npm:
   # - "@angular/cli"
   # - "@nestjs/cli"
 
-packages_pre_kubectl: apt-transport-https
+packages_pre_kubectl: pkg-transport-https
 packages_post_kubectl: kubectl
 
 packages_pre_kvm:

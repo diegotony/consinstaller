@@ -37,11 +37,11 @@ def install_kubectl():
 
 def kubectl_curl(url):
     os.system(
-        "curl -s {0} | sudo apt-key add -  > /dev/null".format(url))
+        "curl -s {0} | sudo pkg-key add -  > /dev/null".format(url))
 
 
 def kubectl_sources():
-    os.system('echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list')
+    os.system('echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/pkg/sources.list.d/kubernetes.list')
 
 
 def install_kvm():
