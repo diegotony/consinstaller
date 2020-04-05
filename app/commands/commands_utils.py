@@ -2,14 +2,14 @@ from app.commands.command_class import Command
 
 
 def prepare_install():
-    Command("apt", "", "update -y", " > /dev/null 2>&1").execute_command_root()
+    Command("pkg", "", "update -y", " > /dev/null 2>&1").execute_command_root()
 
 
 def install_package_apt(sudo, package):
     if sudo:
-        Command("apt", "install", package, "-y > /dev/null 2>&1").install_package_root()
+        Command("pkg", "install", package, "-y > /dev/null 2>&1").install_package_root()
     else:
-        Command("apt", "install", package, "-y > /dev/null 2>&1").install_package()
+        Command("pkg", "install", package, "-y > /dev/null 2>&1").install_package()
 
 
 def join_commands(command_one, operator, command_two):
@@ -17,7 +17,7 @@ def join_commands(command_one, operator, command_two):
 
 
 def add_repo(arch, url):
-    Command("add-apt-repository",  " 'deb [arch={0}] {1} \
+    Command("add-pkg-repository",  " 'deb [arch={0}] {1} \
             buster \
             stable'" .format(arch, url), "", "").execute_command_root()
 
