@@ -2,13 +2,13 @@ import yaml
 from app.commands.commands_utils import *
 from app.format.message_cli import *
 
-with open('app/yaml/apt/packages.yml') as f:
+with open('app/yaml/pkg/packages.yml') as f:
     packages = yaml.load(f, Loader=yaml.FullLoader)
 
-with open('app/yaml/apt/repos.yml') as f:
+with open('app/yaml/pkg/repos.yml') as f:
     repos = yaml.load(f, Loader=yaml.FullLoader)
 
-with open('app/yaml/apt/url.yml') as f:
+with open('app/yaml/pkg/url.yml') as f:
     urls = yaml.load(f, Loader=yaml.FullLoader)
 
 
@@ -44,7 +44,7 @@ def docker_curl(url):
 
 
 def docker_apt_key():
-    Command("apt-key", "fingerprint", "0EBFCD88", "").execute_command_root()
+    Command("pkg-key", "fingerprint", "0EBFCD88", "").execute_command_root()
 
 
 def check_docker():
