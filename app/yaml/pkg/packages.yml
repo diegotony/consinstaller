@@ -39,7 +39,9 @@ packages_npm:
   # - "@angular/cli"
   # - "@nestjs/cli"
 
-packages_pre_kubectl: pkg-transport-https
+packages_pre_kubectl:
+  - apt-transport-https
+  - gnupg2
 packages_post_kubectl: kubectl
 
 packages_pre_kvm:

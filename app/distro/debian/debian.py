@@ -5,6 +5,7 @@ from app.format.message_cli import init_cli as head
 from app.commands.install.install_node import execute_install_node
 from app.commands.install.install_node import execute_install_node_all
 from app.commands.install.install_omzsh import execute as zsh_install
+from app.commands.install.install_minikube import install_kubectl
 
 
 @click.group()
@@ -37,3 +38,9 @@ def install_node(version):
 def install_node_all(version):
     head()
     execute_install_node_all(version)
+
+
+@cli.command(help='install kubectl')
+def kubectl():
+    head()
+    install_kubectl()
