@@ -38,7 +38,7 @@ def execute():
 
 
 def docker_curl(url):
-    cmd1 = Command("curl", "-fsSL", "url", "")
+    cmd1 = Command("curl", "-fsSL", url, "")
     cmd2 = Command("sudo", "key", "add", "-")
     join_commands(cmd1, "|", cmd2)
 
